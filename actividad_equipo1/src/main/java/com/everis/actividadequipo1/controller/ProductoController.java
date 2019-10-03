@@ -31,6 +31,7 @@ public class ProductoController {
 	
 	@PostMapping("/")
 	public Producto insertar(@RequestBody Producto producto) {
+		
 		if(producto.getPrecio() <= 1000) {
 			producto.setDescuento(configuracion.getDescuento1());
 		} else if(producto.getPrecio() < 5000 && producto.getPrecio() > 1000) {

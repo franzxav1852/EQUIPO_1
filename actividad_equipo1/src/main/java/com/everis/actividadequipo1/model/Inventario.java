@@ -1,5 +1,5 @@
 package com.everis.actividadequipo1.model;
-// Generated 3/10/2019 11:53:15 AM by Hibernate Tools 5.2.12.Final
+// Generated 3/10/2019 04:18:20 PM by Hibernate Tools 5.2.12.Final
 
 import java.util.Date;
 import javax.persistence.Column;

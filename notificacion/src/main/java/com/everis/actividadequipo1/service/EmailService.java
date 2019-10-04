@@ -42,12 +42,13 @@ public class EmailService {
 			        message.setFrom(new InternetAddress(remitente));
 			        message.addRecipients(Message.RecipientType.TO, email);   
 			        message.setSubject(asunto);
-			        message.setText(texto);
+			        message.setContent(texto,"text/html");
 			        Transport transport = session.getTransport("smtp");
 			        transport.connect("smtp.gmail.com", remitente, "tecguru$");
 			        transport.sendMessage(message, message.getAllRecipients());
 			        transport.close();
 			        exitoCorreo = true;
+			        
 			    }
 			    catch (MessagingException me) {
 			        me.printStackTrace();

@@ -24,7 +24,7 @@ public class NotificacionController {
 	
 
 	
-	@PostMapping("/producto")
+	@PostMapping("/")
 	public NotificacionResponse enviaConfirmacion(@RequestBody ProductoRequest productoRequest) {
 		NotificacionResponse response = new NotificacionResponse();
 		response.setSuccessful(false);
@@ -38,7 +38,7 @@ public class NotificacionController {
 					+"<img src=\""+productoObtenido.getUrl() +"\">";
 			}
 		
-		if (productoRequest.getCorreo().isEmpty()){	
+		if (!productoRequest.getCorreo().isEmpty()){	
 			boolean correo2=correoService.enviarCorreo(productoRequest.getCorreo(), "catalogo", infoProducto);
 			if(correo2) {
 				response.setSuccessful(true);

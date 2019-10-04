@@ -1,21 +1,19 @@
 package com.everis.actividadequipo1.controller;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.env.Environment;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.everis.actividadequipo1.component.NotificacionComponent;
+
 import com.everis.actividadequipo1.modelo.Producto;
 import com.everis.actividadequipo1.request.ProductoRequest;
 import com.everis.actividadequipo1.response.NotificacionResponse;
 import com.everis.actividadequipo1.service.EmailService;
-import com.everis.actividadequipo1.utils.Constans;
+
 
 @RestController
 @RequestMapping("/notificacion")
@@ -24,14 +22,7 @@ public class NotificacionController {
 	@Autowired
 	private EmailService correoService;
 	
-	@Autowired
-	private Producto producto;
-	
-	@Autowired
-	private NotificacionComponent notificacionComponent;
-	
-	@Autowired
-	private Environment environment;
+
 	
 	@PostMapping("/producto")
 	public NotificacionResponse enviaConfirmacion(@RequestBody ProductoRequest productoRequest) {

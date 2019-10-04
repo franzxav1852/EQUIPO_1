@@ -1,13 +1,13 @@
 version: '3'
 services:
   notificacion:
-    image: notificacion
+    image: ycdr/notificacion
     ports: 
     - "8100:8100"
     depends_on:
     - eurekaserver
   producto:
-    image: productos
+    image: ycdr/productos
     ports: 
     - "9999:9999"
     depends_on:
@@ -15,7 +15,7 @@ services:
     - eurekaserver
     - configserver
   inventario:
-    image: inventario
+    image: ycdr/inventario
     ports: 
     - "9998:9998"
     depends_on:
@@ -23,17 +23,17 @@ services:
     - eurekaserver
     - configserver
   eurekaserver:
-    image: eurekaserver
+    image: ycdr/eurekaserver
     ports: 
     - "8761:8761"
   configserver:
-    image: configserver
+    image: ycdr/configserver
     ports: 
     - "8888:8888"
     depends_on:
     - eurekaserver
   db:
-    image: database
+    image: ycdr/database
     ports: 
     - "3306:3306"
     environment:

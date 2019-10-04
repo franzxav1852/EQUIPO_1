@@ -17,8 +17,7 @@ public class Producto implements java.io.Serializable {
 	private double precio;
 	private double descuento;
 	private int stock;
-	private Set<Inventario> inventarios = new HashSet<Inventario>(0);
-
+	
 	public Producto() {
 	}
 
@@ -31,18 +30,7 @@ public class Producto implements java.io.Serializable {
 		this.stock = stock;
 	}
 
-	public Producto(int idproducto, String url, String descripcion, double precio, double descuento, int stock,
-			Set<Inventario> inventarios) {
-		this.idproducto = idproducto;
-		this.url = url;
-		this.descripcion = descripcion;
-		this.precio = precio;
-		this.descuento = descuento;
-		this.stock = stock;
-		this.inventarios = inventarios;
-	}
-
-	
+		
 	public int getIdproducto() {
 		return this.idproducto;
 	}
@@ -94,15 +82,6 @@ public class Producto implements java.io.Serializable {
 
 	public void setStock(int stock) {
 		this.stock = stock;
-	}
-
-	//@OneToMany(fetch = FetchType.LAZY, mappedBy = "producto")
-	public Set<Inventario> getInventarios() {
-		return this.inventarios;
-	}
-
-	public void setInventarios(Set<Inventario> inventarios) {
-		this.inventarios = inventarios;
 	}
 
 }

@@ -1,0 +1,41 @@
+version: '3'
+services:
+  notificacion:
+    image: notificacion
+    ports: 
+    - "8100:8100"
+    depends_on:
+    - eurekaserver
+  producto:
+    image: productos
+    ports: 
+    - "9999:9999"
+    depends_on:
+    - db
+    - eurekaserver
+    - configserver
+  inventario:
+    image: inventario
+    ports: 
+    - "9998:9998"
+    depends_on:
+    - db
+    - eurekaserver
+    - configserver
+  eurekaserver:
+    image: eurekaserver
+    ports: 
+    - "8761:8761"
+  configserver:
+    image: configserver
+    ports: 
+    - "8888:8888"
+    depends_on:
+    - eurekaserver
+  db:
+    image: database
+    ports: 
+    - "3306:3306"
+    environment:
+    - MYSQL_ROOT_PASSWORD=tecguru$$
+    - MYSQL_DATABASE=tienda

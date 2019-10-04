@@ -65,6 +65,11 @@
 		<dependency>
 			<groupId>org.springframework.cloud</groupId>
 			<artifactId>spring-cloud-starter-openfeign</artifactId>
+		</dependency>  		
+		<dependency>  
+    		<groupId>io.springfox</groupId>
+    		<artifactId>springfox-swagger2</artifactId>
+    		<version>${io.springfox.version}</version>
 		</dependency>
 		
 		

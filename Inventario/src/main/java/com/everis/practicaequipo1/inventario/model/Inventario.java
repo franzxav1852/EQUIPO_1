@@ -1,12 +1,10 @@
 package com.everis.practicaequipo1.inventario.model;
-// Generated 3/10/2019 04:18:20 PM by Hibernate Tools 5.2.12.Final
+// Generated 4/10/2019 09:42:59 AM by Hibernate Tools 5.2.12.Final
 
 import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import static javax.persistence.GenerationType.IDENTITY;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -21,29 +19,29 @@ import javax.persistence.TemporalType;
 @Table(name = "inventario", catalog = "tienda")
 public class Inventario implements java.io.Serializable {
 
-	private Integer id;
+	private int id;
 	private Producto producto;
 	private Date fechahora;
-	private int cantidad;
+	private Integer cantidad;
 
 	public Inventario() {
 	}
 
-	public Inventario(Producto producto, Date fechahora, int cantidad) {
+	public Inventario(int id, Producto producto, Date fechahora, int cantidad) {
+		this.id = id;
 		this.producto = producto;
 		this.fechahora = fechahora;
 		this.cantidad = cantidad;
 	}
 
 	@Id
-	@GeneratedValue(strategy = IDENTITY)
 
 	@Column(name = "id", unique = true, nullable = false)
-	public Integer getId() {
+	public int getId() {
 		return this.id;
 	}
 
-	public void setId(Integer id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 
@@ -68,11 +66,11 @@ public class Inventario implements java.io.Serializable {
 	}
 
 	@Column(name = "cantidad", nullable = false)
-	public int getCantidad() {
+	public Integer getCantidad() {
 		return this.cantidad;
 	}
 
-	public void setCantidad(int cantidad) {
+	public void setCantidad(Integer cantidad) {
 		this.cantidad = cantidad;
 	}
 

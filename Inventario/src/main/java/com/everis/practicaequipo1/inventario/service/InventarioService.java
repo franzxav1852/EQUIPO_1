@@ -16,7 +16,7 @@ public class InventarioService {
 	
 	public int consultarStock(int id) {
 		int stock = 0;
-		List<Inventario> inventarios = inventarioRepository.findByidproducto(id);
+		List<Inventario> inventarios = inventarioRepository.findByproducto_idproducto(id);
 		for(Inventario inventario : inventarios) {
 			stock += inventario.getCantidad();
 		}

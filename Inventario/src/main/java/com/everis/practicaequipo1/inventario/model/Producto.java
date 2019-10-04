@@ -1,11 +1,13 @@
 package com.everis.practicaequipo1.inventario.model;
-// Generated 3/10/2019 04:18:20 PM by Hibernate Tools 5.2.12.Final
+// Generated 4/10/2019 09:42:59 AM by Hibernate Tools 5.2.12.Final
 
 import java.util.HashSet;
 import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import static javax.persistence.GenerationType.IDENTITY;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -19,50 +21,45 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 @Table(name = "producto", catalog = "tienda")
 public class Producto implements java.io.Serializable {
 
-	private int idproducto;
+	private Integer idproducto;
 	private String url;
 	private String descripcion;
 	private double precio;
 	private double descuento;
-	private int stock;
 	@JsonIgnore
 	private Set<Inventario> inventarios = new HashSet<Inventario>(0);
 
 	public Producto() {
 	}
 
-	public Producto(int idproducto, String url, String descripcion, double precio, double descuento, int stock) {
-		this.idproducto = idproducto;
+	public Producto(String url, String descripcion, double precio, double descuento) {
 		this.url = url;
 		this.descripcion = descripcion;
 		this.precio = precio;
 		this.descuento = descuento;
-		this.stock = stock;
 	}
 
-	public Producto(int idproducto, String url, String descripcion, double precio, double descuento, int stock,
-			Set<Inventario> inventarios) {
-		this.idproducto = idproducto;
+	public Producto(String url, String descripcion, double precio, double descuento, Set<Inventario> inventarios) {
 		this.url = url;
 		this.descripcion = descripcion;
 		this.precio = precio;
 		this.descuento = descuento;
-		this.stock = stock;
 		this.inventarios = inventarios;
 	}
 
 	@Id
+	@GeneratedValue(strategy = IDENTITY)
 
 	@Column(name = "idproducto", unique = true, nullable = false)
-	public int getIdproducto() {
+	public Integer getIdproducto() {
 		return this.idproducto;
 	}
 
-	public void setIdproducto(int idproducto) {
+	public void setIdproducto(Integer idproducto) {
 		this.idproducto = idproducto;
 	}
 
-	@Column(name = "url", nullable = false, length = 200)
+	@Column(name = "url", nullable = false, length = 45)
 	public String getUrl() {
 		return this.url;
 	}
@@ -96,15 +93,6 @@ public class Producto implements java.io.Serializable {
 
 	public void setDescuento(double descuento) {
 		this.descuento = descuento;
-	}
-
-	@Column(name = "stock", nullable = false)
-	public int getStock() {
-		return this.stock;
-	}
-
-	public void setStock(int stock) {
-		this.stock = stock;
 	}
 
 	@OneToMany(fetch = FetchType.EAGER, mappedBy = "producto")

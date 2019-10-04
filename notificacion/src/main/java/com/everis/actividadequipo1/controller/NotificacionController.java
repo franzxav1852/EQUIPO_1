@@ -1,6 +1,10 @@
 package com.everis.actividadequipo1.controller;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.env.Environment;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -8,6 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.everis.actividadequipo1.component.NotificacionComponent;
 import com.everis.actividadequipo1.modelo.Producto;
+import com.everis.actividadequipo1.request.ProductoRequest;
 import com.everis.actividadequipo1.response.NotificacionResponse;
 import com.everis.actividadequipo1.service.EmailService;
 import com.everis.actividadequipo1.utils.Constans;
@@ -25,18 +30,30 @@ public class NotificacionController {
 	@Autowired
 	private NotificacionComponent notificacionComponent;
 	
+	@Autowired
+	private Environment environment;
+	
 	@PostMapping("/producto")
-	public NotificacionResponse enviaConfirmacion(@RequestBody Producto productoRecibido) {
+	public NotificacionResponse enviaConfirmacion(@RequestBody ProductoRequest productoRequest) {
 		NotificacionResponse response = new NotificacionResponse();
 		response.setSuccessful(false);
+		List<Producto> productos = productoRequest.getProductos();
+		String infoProducto = "";
+		for (Producto productoObtenido : productos) {
+			infoProducto = infoProducto+"<h1>idProducto: "+productoObtenido.getIdproducto()+"</h1></br>"
+					+"<h2>Precio: "+productoObtenido.getPrecio()+"</h2></br>"
+					+"<h2>Descuento: "+productoObtenido.getDescuento()+"</h2></br>"
+					+"<h3>Descripcion: "+productoObtenido.getDescripcion()+"</h3></br>"
+					+"<img src=\""+productoObtenido.getUrl() +"\">";
+			}
 		
-		if (Constans.EMAILDESTINO.isEmpty()){	
-			boolean correo2=correoService.enviarCorreo(Constans.EMAILDESTINO, "Costo y descripcion de " + producto.getIdproducto(), productoRecibido.toString());
+		if (productoRequest.getCorreo().isEmpty()){	
+			boolean correo2=correoService.enviarCorreo(productoRequest.getCorreo(), "catalogo", infoProducto);
 			if(correo2) {
 				response.setSuccessful(true);
 				response.setEmail("email");
-				response.setMessage("Correo enviado con exito");
-				response.setProducto(productoRecibido);
+				response.setMessage("Correo enviado con exito a: "+productoRequest.getCorreo());
+				response.setProductos(productos);
 				return response;	
 			}
 			else {

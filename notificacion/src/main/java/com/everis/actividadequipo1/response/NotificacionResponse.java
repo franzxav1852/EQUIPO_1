@@ -1,12 +1,14 @@
 package com.everis.actividadequipo1.response;
 
+import java.util.List;
+
 import com.everis.actividadequipo1.modelo.Producto;
 
 public class NotificacionResponse {
 	
 	private boolean successful;
 	private String email; 
-	private Producto producto;
+	private List<Producto> productos;
 	private String message;
 	
 	public String getMessage() {
@@ -27,13 +29,13 @@ public class NotificacionResponse {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	public Producto getProducto() {
-		return producto;
+	public List<Producto> getProductos() {
+		return productos;
 	}
-	public void setProducto(Producto producto) {
-		this.producto = producto;
+	public void setProductos(List<Producto> productos) {
+		this.productos = productos;
 	}
-	
+
 	
 
 }
